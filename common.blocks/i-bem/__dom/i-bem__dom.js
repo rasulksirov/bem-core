@@ -347,14 +347,14 @@ var DOM = BEM.decl('i-bem__dom',/** @lends BEMDOM.prototype */{
         select && (domElems = domElems.add(ctxElem[select](selector)));
 
         if(onlyFirst) {
-            return domElems[0]? initBlock(blockName, domElems.eq(0), undef, true) : null;
+            return domElems[0]? initBlock(blockName, domElems.eq(0), undef, true)._init() : null;
         }
 
         var res = [],
             uniqIds = {};
 
         domElems.each(function(i, domElem) {
-            var block = initBlock(blockName, $(domElem), undef, true);
+            var block = initBlock(blockName, $(domElem), undef, true)._init();
             if(!uniqIds[block._uniqId]) {
                 uniqIds[block._uniqId] = true;
                 res.push(block);
